@@ -75,9 +75,33 @@ class GameManager(val mainActivity: MainActivity) {
 
         if(tern % 3 == 1 ) {
             when (selection){
-                1 -> p1.pref1.technique1.executeTechnique()
-                2 -> p1.pref1.technique2.executeTechnique()
+                1 -> {
+                    p1.pref1.technique1.executeTechnique(p1.pref1, p2.pref1)
+                    mainActivity.messageText2 = "「${p1.pref1.technique1.name}」を選択しました."
+                }
+                2 -> {
+                    p1.pref1.technique2.executeTechnique(p1.pref1, p2.pref1)
+                    mainActivity.messageText2 = "「${p1.pref1.technique2.name}」を選択しました."
+                }
+                3 -> {
+                    p1.pref1.technique3.executeTechnique(p1.pref1, p2.pref1)
+                    mainActivity.messageText2 = "「${p1.pref1.technique3.name}」を選択しました."
+                }
+                4 -> {
+                    p1.strengthenMilitary()
+                    mainActivity.messageText2 = "軍事力の増強を行います。"
+                }
+                5 -> {
+                    p1.increasePopulation()
+                    mainActivity.messageText2 = "子育て支援で人口を増やします。"
+                }
+                6 -> {
+                    p1.cureDisease()
+                    mainActivity.messageText2 = "医療機関を増やし感染症を治療します。"
+                }
             }
+
+            mainActivity.messageSet2()
         }
 
 

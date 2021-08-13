@@ -41,7 +41,7 @@ class Player {
                 pref1.area = 7104
                 pref1.atack = 100
                 pref1.defence = 120
-                pref1.type = "光"
+                pref1.type = "海洋"
 
             }
             4 -> {
@@ -51,7 +51,7 @@ class Player {
                 pref1.area = 6708
                 pref1.atack = 100
                 pref1.defence = 120
-                pref1.type = "闇"
+                pref1.type = "神"
 
             }
             5 -> {
@@ -61,7 +61,7 @@ class Player {
                 pref1.area = 4131
                 pref1.atack = 100
                 pref1.defence = 120
-                pref1.type = "海"
+                pref1.type = "海洋"
 
             }
             6 -> {

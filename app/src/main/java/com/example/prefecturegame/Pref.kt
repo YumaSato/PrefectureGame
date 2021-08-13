@@ -8,7 +8,7 @@ class Pref {
     var atack : Int = 0
     var defence : Int = 0
     var type : String = ""
-    var illness : String = ""
+    var illness : Int = 0
 
     var technique1 = Technique()
     var technique2 = Technique()
