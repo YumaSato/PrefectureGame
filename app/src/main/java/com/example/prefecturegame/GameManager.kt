@@ -51,17 +51,17 @@ class GameManager(val mainActivity: MainActivity) {
                 }
             }while(p1.pref1.name == p2.pref1.name)
 
-            exhibitStatus(p2)
-            mainActivity.statusText2p = exhibit//ステータスを表示する文字列を作る汎用の関数にp1の変数を渡して、文字列を1pステータス表示文字列の変数に代入してもらう。
+            exhibitStatus(p2)//ステータスを表示する文字列を作る汎用の関数にp1の変数を渡して、できた文字列をexhibitに代入。
+            mainActivity.statusText2p = exhibit//文字列を1pステータス表示文字列の変数に代入してもらう。
             mainActivity.statusSetP2()//Mainクラスにある、Prefのステータスを表示する関数を呼び出す。
-            mainActivity.messageText2 = "${p2.pref1.name}を選択しました."
+            mainActivity.messageText2 = "${p2.pref1.name}が宣戦布告してきた！."
             mainActivity.messageSet2()
 
         }
 
 
 
-        if(tern % 3 == 0 ) {
+        if(tern >= 3 && tern % 3 == 0 ) {
             mainActivity.messageText1 = "${p1.pref1.name}は、どうする？"
             mainActivity.buttonText1 = "${p1.pref1.technique1.name}"
             mainActivity.buttonText2 = "${p1.pref1.technique2.name}"
@@ -73,19 +73,22 @@ class GameManager(val mainActivity: MainActivity) {
             mainActivity.messageSet1()
         }
 
-        if(tern % 3 == 1 ) {
+        if(tern >= 3 && tern % 3 == 1 ) {
             when (selection){
                 1 -> {
                     p1.pref1.technique1.executeTechnique(p1.pref1, p2.pref1)
                     mainActivity.messageText2 = "「${p1.pref1.technique1.name}」を選択しました."
+                    mainActivity.messageText1 = p1.pref1.technique1.techniqueMessage
                 }
                 2 -> {
                     p1.pref1.technique2.executeTechnique(p1.pref1, p2.pref1)
                     mainActivity.messageText2 = "「${p1.pref1.technique2.name}」を選択しました."
+                    mainActivity.messageText1 = p1.pref1.technique2.techniqueMessage
                 }
                 3 -> {
                     p1.pref1.technique3.executeTechnique(p1.pref1, p2.pref1)
                     mainActivity.messageText2 = "「${p1.pref1.technique3.name}」を選択しました."
+                    mainActivity.messageText1 = p1.pref1.technique3.techniqueMessage
                 }
                 4 -> {
                     p1.strengthenMilitary()
@@ -101,7 +104,29 @@ class GameManager(val mainActivity: MainActivity) {
                 }
             }
 
+            mainActivity.messageSet1()
             mainActivity.messageSet2()
+
+            exhibitStatus(p1)
+            mainActivity.statusText1p = exhibit
+            mainActivity.statusSetP1()
+
+            exhibitStatus(p2)
+            mainActivity.statusText2p = exhibit
+            mainActivity.statusSetP2()
+
+            mainActivity.buttonReset()
+        }
+
+
+
+
+
+        if(tern >= 3 && tern % 3 == 1 ) {
+
+            mainActivity.messageSet2()
+            exhibitStatus (p1)
+            exhibitStatus (p2)
         }
 
 
@@ -112,8 +137,8 @@ class GameManager(val mainActivity: MainActivity) {
 
 
     fun exhibitStatus(p:Player){//ステータスに表示する内容を変数exhibitに格納する。
-        exhibit = "1P:${p.pref1.name}\n人口:${p.pref1.population}人" +
-                "\n面積:${p.pref1.area}km2\n攻撃力:${p.pref1.atack}\n" +
+        exhibit = "${p.pref1.name}\n総人口:${p.pref1.population}人\n" +
+                "元気な人口:${p.pref1.people}人\n面積:${p.pref1.area}km2\n攻撃力:${p.pref1.atack}\n" +
                 "防御力:${p.pref1.defence}"
 
     }
